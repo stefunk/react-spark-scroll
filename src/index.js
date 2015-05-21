@@ -1,5 +1,6 @@
 const React = require('react');
 const sparkFactory = require('./spark');
+const _ = require('lodash');
 
 const Foo = React.createClass({
   render() {

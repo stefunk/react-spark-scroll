@@ -1,7 +1,17 @@
 var assign = require('object-assign');
 var _ = require('lodash');
-var AnimationFrame = require('animation-frame');
 var EventEmitter = require('events').EventEmitter;
+
+function oldSchoolAnimationFrame() {
+  return {
+    request: function (cb) {
+      window.requestAnimationFrame(cb);
+    }
+  };
+}
+
+// Long life isomorphic hacks
+var AnimationFrame = (typeof window !== 'undefined')? require("animation-frame") : oldSchoolAnimationFrame;
 
 function sparkFactory({animator, formulas, actionProps, setup, invalidateAutomatically}) {
 
